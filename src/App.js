@@ -10,6 +10,7 @@ import RQHeroes from "./pages/RQHeroes";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import RQSuperHero from "./pages/RQSuperHero";
+import RQParelel from "./pages/RQParelel";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,9 @@ function App() {
               <li>
                 <Link to="/rqheroes">RQHeroes</Link>
               </li>
+              <li>
+                <Link to="/rqparelel">RQParalel</Link>
+              </li>
             </ul>
           </nav>
 
@@ -40,6 +44,9 @@ function App() {
             </Route>
             <Route path="/rqheroes">
               <RQHeroes />
+            </Route>
+            <Route path="/rqparelel">
+              <RQParelel />
             </Route>
             <Route path="/superheroes">
               <SuperHeroes />
