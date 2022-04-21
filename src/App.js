@@ -2,12 +2,14 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import Home from "./pages/Home";
 import SuperHeroes from "./pages/SuperHeroes";
 import RQHeroes from "./pages/RQHeroes";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import RQSuperHero from "./pages/RQSuperHero";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,9 @@ function App() {
           {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
           <Switch>
+            <Route path="/rq-super-heroes/:heroId">
+              <RQSuperHero />
+            </Route>
             <Route path="/rqheroes">
               <RQHeroes />
             </Route>
@@ -45,6 +50,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      <ReactQueryDevtools initialOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }
