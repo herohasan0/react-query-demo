@@ -1,8 +1,15 @@
-import React from "react";
-import { useSuperHeroesData } from "../hooks/useSuperHeroes";
+import React, { useState } from "react";
+import {
+  useAddSuperHeroData,
+  useSuperHeroesData,
+} from "../hooks/useSuperHeroes";
 import { Link } from "react-router-dom";
 
 export default function RQHeroes() {
+  const [name, setName] = useState("");
+  const [alterEgo, setAlterEgo] = useState("");
+  const { mutate: addHero } = useAddSuperHeroData();
+
   const onSuccess = (data) => {
     console.log("Perform side effects after data fetching", data);
   };
@@ -21,9 +28,27 @@ export default function RQHeroes() {
   if (isError) {
     return <div>{error.message}</div>;
   }
+
+  const handleAddHeroClick = () => {
+    const hero = { name, alterEgo };
+    addHero(hero);
+  };
   return (
     <>
       <h2>Super Heroes</h2>
+      <div>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          value={alterEgo}
+          onChange={(e) => setAlterEgo(e.target.value)}
+        />
+        <button onClick={handleAddHeroClick}>Add Hero</button>
+      </div>
       <button onClick={refetch}>fetch again</button>
       {data?.data.map((hero) => {
         return (
